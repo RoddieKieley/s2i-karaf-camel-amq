@@ -40,6 +40,7 @@
         <property name="userName" value="01597111user"/> 
         <property name="password" value="01597111pass"/>
       </bean>
+   </property>
   </bean>
 
   <!--
