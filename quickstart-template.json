@@ -8,16 +8,42 @@
       "iconClass": "icon-java"
     },
     "labels": {},
-    "name": "s2i-quickstart-karaf-camel-amq-2"
+    "name": "s2i-quickstart-karaf-camel-amq-6"
   },
   "parameters": [
     {
+      "name": "A_MQ_SERVICE_NAME",
+      "value": "broker",
+      "description": "A-MQ Service Name"
+    },
+    {
+      "name": "BROKER_SERVICE_HOST",
+      "value": "172.30.197.67",
+      "description": "Broker Service Host"
+    },
+    {
+      "name": "BROKER_SERVICE_PORT",
+      "value": "61616",
+      "description": "Broker Service Port"
+    },
+    {
+      "name": "BROKER_SERVICE_USER",
+      "value": "01597111user",
+      "description": "Broker Service username"
+    },
+    {
+      "name": "BROKER_SERVICE_PASS",
+      "value": "01597111pass",
+      "description": "Broker Service password"
+    },
+    {
       "name": "APP_NAME",
-      "value": "s2i-quickstart-karaf-camel-amq-2",
+      "value": "s2i-quickstart-karaf-camel-amq-6",
       "description": "Application Name"
     },
     {
       "name": "GIT_REPO",
+	  "value": "https://github.com/RoddieKieley/s2i-karaf-camel-amq",
       "required": true,
       "description": "Git repository, required"
     },
@@ -28,7 +54,7 @@
     },
     {
       "name": "SERVICE_NAME",
-      "value": "s2i-qs-karaf-camel-amq-2",
+      "value": "s2i-qs-karaf-camel-amq-6",
       "description": "Exposed Service name"
     },
     {
@@ -57,7 +83,7 @@
     {
       "description": "Namespace in which the Fuse ImageStreams are installed. These ImageStreams are normally installed in the openshift namespace. You should only need to modify this if you've installed the ImageStreams in a different namespace/project.",
       "name": "IMAGE_STREAM_NAMESPACE",
-      "value": "01586730-project-0",
+      "value": "01597111-project-0",
       "required": true
     },
     {
@@ -140,8 +166,25 @@
               "namespace": "${IMAGE_STREAM_NAMESPACE}",
               "name": "fis-karaf-openshift:${BUILDER_VERSION}"
             },
+			"incremental": true,
             "forcePull": true,
             "env": [
+              {
+                "name": "BROKER_SERVICE_HOST",
+                "value": "${BROKER_SERVICE_HOST}"
+              },
+              {
+                "name": "BROKER_SERVICE_PORT",
+                "value": "${BROKER_SERVICE_PORT}"
+              },
+              {
+                "name": "BROKER_SERVICE_USER",
+                "value": "${BROKER_SERVICE_USEr}"
+              },
+              {
+                "name": "BROKER_SERVICE_PASS",
+                "value": "${BROKER_SERVICE_PASS}"
+              },
               {
                 "name": "BUILD_LOGLEVEL",
                 "value": "5"

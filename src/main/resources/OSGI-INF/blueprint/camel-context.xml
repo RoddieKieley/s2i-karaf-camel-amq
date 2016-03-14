@@ -31,6 +31,17 @@
 
   <bean id="orderGenerator" class="com.redhat.exampleskcaa.OrderGenerator"/>
 
+  <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent" >
+    <property name="connectionFactory">
+      <bean class="org.apache.activemq.ActiveMQConnectionFactory">
+<!--
+        <property name="brokerURL" value="vm://localhost?create=false&amp;waitForStart=10000" />
+-->
+        <property name="userName" value="01597111user"/> 
+        <property name="password" value="01597111pass"/>
+      </bean>
+  </bean>
+
   <!--
     The namespace for the camelContext element in Blueprint is 'http://camel.apache.org/schema/blueprint'. Additionally,
     we can also define namespace prefixes we want to use them in the XPath expressions in our CBR.
