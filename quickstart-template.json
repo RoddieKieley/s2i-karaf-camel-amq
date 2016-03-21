@@ -8,7 +8,7 @@
       "iconClass": "icon-java"
     },
     "labels": {},
-    "name": "s2i-quickstart-karaf-camel-amq-6"
+    "name": "s2i-quickstart-karaf-camel-amq-0"
   },
   "parameters": [
     {
@@ -18,7 +18,7 @@
     },
     {
       "name": "BROKER_SERVICE_HOST",
-      "value": "172.30.197.67",
+      "value": "172.30.209.204",
       "description": "Broker Service Host"
     },
     {
@@ -38,7 +38,7 @@
     },
     {
       "name": "APP_NAME",
-      "value": "s2i-quickstart-karaf-camel-amq-6",
+      "value": "s2i-quickstart-karaf-camel-amq-0",
       "description": "Application Name"
     },
     {
@@ -54,7 +54,7 @@
     },
     {
       "name": "SERVICE_NAME",
-      "value": "s2i-qs-karaf-camel-amq-6",
+      "value": "s2i-qs-karaf-camel-amq-0",
       "description": "Exposed Service name"
     },
     {
@@ -179,7 +179,7 @@
               },
               {
                 "name": "BROKER_SERVICE_USER",
-                "value": "${BROKER_SERVICE_USEr}"
+                "value": "${BROKER_SERVICE_USER}"
               },
               {
                 "name": "BROKER_SERVICE_PASS",
