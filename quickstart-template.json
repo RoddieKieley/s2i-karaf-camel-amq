@@ -207,7 +207,7 @@
         "output": {
           "to": {
             "kind": "ImageStreamTag",
-            "name": "${APP_NAME}:latest"
+            "name": "${APP_NAME}:${APP_VERSION}"
           }
         },
         "resources": {}
@@ -248,7 +248,7 @@
               ],
               "from": {
                 "kind": "ImageStreamTag",
-                "name": "${APP_NAME}:latest"
+                "name": "${APP_NAME}:${APP_VERSION}"
               }
             }
           }
@@ -280,7 +280,7 @@
             "containers": [
               {
                 "name": "${APP_NAME}",
-                "image": "library/${APP_NAME}:latest",
+                "image": "library/${APP_NAME}:${APP_VERSION}",
                 "readinessProbe": {
                   "exec": {
                     "command": [
