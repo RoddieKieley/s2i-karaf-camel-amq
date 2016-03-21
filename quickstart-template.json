@@ -64,7 +64,7 @@
     },
     {
       "name": "APP_VERSION",
-      "value": "2.2.0.redhat-079",
+      "value": "2.2.1.redhat-079",
       "description": "Application version"
     },
     {
