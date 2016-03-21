@@ -166,7 +166,7 @@
               "namespace": "${IMAGE_STREAM_NAMESPACE}",
               "name": "fis-karaf-openshift:${BUILDER_VERSION}"
             },
-			"incremental": true,
+			"incremental": false,
             "forcePull": true,
             "env": [
               {
