@@ -36,8 +36,9 @@
       <bean class="org.apache.activemq.ActiveMQConnectionFactory">
 <!--
         <property name="brokerURL" value="vm://localhost?create=false&amp;waitForStart=10000" />
--->
 		<property name="brokerURL" value="tcp://172.30.209.204:61616" />
+-->
+		<property name="brokerURL" value="tcp://172.30.41.237:61616" />
         <property name="userName" value="01597111user"/> 
         <property name="password" value="01597111pass"/>
       </bean>
