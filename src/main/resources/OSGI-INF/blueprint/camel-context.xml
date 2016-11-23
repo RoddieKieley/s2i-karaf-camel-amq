@@ -31,6 +31,12 @@
 
   <bean id="orderGenerator" class="com.redhat.exampleskcaa.OrderGenerator"/>
 
+    <bean id="poolConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory" init-method="start" destroy-method="stop">
+        <property name="maxConnections" value="8"/>
+        <property name="connectionFactory" ref="jmsConnectionFactory"/>
+    </bean>
+
+
   <bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
 <!--
     <property name="brokerURL" value="tcp://172.30.41.237:61616"/>
@@ -42,14 +48,17 @@
   </bean>
 
   <bean id="jmsTransactionManager" class="org.springframework.jms.connection.JmsTransactionManager">
+<!--
     <property name="connectionFactory" ref="jmsConnectionFactory"/>
+-->
+    <property name="connectionFactory" ref="poolConnectionFactory"/>
   </bean>
 
 <!--
   <bean id="jms" class="org.apache.activemq.camel.component.ActiveMQComponent">
 -->
   <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
-    <property name="connectionFactory" ref="jmsConnectionFactory"/>
+    <property name="connectionFactory" ref="poolConnectionFactory"/>
     <property name="transacted" value="true"/>
     <property name="transactionManager" ref="jmsTransactionManager"/>
     <property name="acceptMessagesWhileStopping" value="true"/>
@@ -88,7 +97,10 @@
 
     <!-- a route to generate a random order every 5th second -->
     <route id="generate-order">
+<!--
       <from uri="timer:order?period=5000"/>
+-->
+      <from uri="timer:order?period=100"/>
       <bean ref="orderGenerator" method="generateOrder"/>
       <setHeader headerName="Exchange.FILE_NAME">
         <method ref="orderGenerator" method="generateFileName"/>
@@ -110,7 +122,11 @@
     -->
     <route id="file-to-jms-route">
       <from uri="file:work/jms/input"/>
+	  <transacted ref="required"/>
       <log message="Receiving order ${file:name}"/>
+	  <delay asyncDelayed="true">
+		<constant>4000</constant>
+	  </delay>
       <to uri="activemq:incomingOrders"/>
     </route>
 
@@ -125,6 +141,9 @@
     <route id="jms-cbr-route" streamCache="true">
       <from uri="activemq:incomingOrders"/>
 	  <transacted ref="required"/>
+	  <delay asyncDelayed="true">
+		<constant>6000</constant>
+	  </delay>
       <choice>
         <when>
           <xpath>/order:order/order:customer/order:country = 'UK'</xpath>

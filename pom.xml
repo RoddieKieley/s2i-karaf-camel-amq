@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.redhat</groupId>
-  <artifactId>exampleskcaa</artifactId>
+  <artifactId>exampleskcaa4</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>Fabric8 :: Quickstarts :: Karaf :: Camel and ActiveMQ</name>
@@ -20,9 +20,12 @@
     <docker.maven.plugin.version>0.13.6</docker.maven.plugin.version>
     <karaf.plugin.version>4.0.2.redhat-621079</karaf.plugin.version>
 
+<!--
 	<docker.registry>registry.access.redhat.com</docker.registry>
+	<docker.registry>172.30.80.80:5000</docker.registry>
+-->
     <docker.from>registry.access.redhat.com/jboss-fuse-6/fis-karaf-openshift:1.0</docker.from>
-    <fabric8.dockerUser>017108382/</fabric8.dockerUser>
+    <fabric8.dockerUser>017108384/</fabric8.dockerUser>
     <docker.image>${fabric8.dockerUser}${project.artifactId}:${project.version}</docker.image>
     <docker.assemblyDescriptor>${basedir}/src/main/fabric8/assembly.xml</docker.assemblyDescriptor>
     <docker.port.container.jolokia>8778</docker.port.container.jolokia>
